@@ -1,5 +1,5 @@
 function a () {
-	var str = ['name.txt','zip.js','获取文件名.bat','q.txt']
+	var str = ['name.txt','zip.js']
 	htmlobj=$.ajax({url:"zip/name.txt",async:false});
 	q = htmlobj.responseText.split("\n");
 	q.pop()

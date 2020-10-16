@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			.clock {
+				width: 540px;
+				height: 540px;
+				border: 1px solid #000;
+				border-radius: 50%;
+				position: relative;
+				overflow: hidden;
+			}
+			.s {
+				height: 300px;
+				width: 5px;
+				background: red;
+				position: absolute;
+				top: 20px;
+				left: 49.5%;
+				transform-origin: 50% 83.3%;
+			}
+			.m {
+				height: 270px;
+				width: 10px;
+				background: blue;
+				position: absolute;
+				top: 70px;
+				left: 49%;
+				transform-origin: 50% 74%;
+			}
+			.h {
+				height: 200px;
+				width: 20px;
+				background: yellow;
+				position: absolute;
+				top: 120px;
+				left: 48%;
+				transform-origin: 50% 75%;
+			}
+			.box {
+				width: 50px;
+				height: 540px;
+				position: absolute;
+				left: 245px;
+			}
+			.box div {
+				width: 50px;
+				height: 50px;
+				font-size: 40px;
+				position: absolute;
+				text-align: center;
+			}
+			.bottom {
+				bottom: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="clock">
+			<div class="s"></div>
+			<div class="m"></div>
+			<div class="h"></div>
+		</div>
+		<script type="text/javascript">
+			var clock = document.querySelector('.clock');
+			var h = document.querySelector('.h');
+			var m = document.querySelector('.m');
+			var s = document.querySelector('.s');
+			for(var i = 1;i < 7;i++) {
+				var clockBox = document.createElement('div')
+				clockBox.className = 'box';
+				clock.appendChild(clockBox);
+				clockBox.style.transform = 'rotate(' + i * 30 + 'deg)';
+				var topBox = document.createElement('div')
+				topBox.className = 'top';
+				topBox.innerHTML = i;
+				clockBox.appendChild(topBox);
+				var bottomBox = document.createElement('div')
+				bottomBox.className = 'bottom';
+				bottomBox.innerHTML = i + 6;
+				clockBox.appendChild(bottomBox);
+				topBox.style.transform = 'rotate(' + -i * 30 + 'deg)';
+				bottomBox.style.transform = 'rotate(' + -i * 30 + 'deg)';
+			}
+			function clockFn() {				var hours = new Date().getHours(); //获取当前小时数(0-23)				var min = new Date().getMinutes();//获取当前分钟数(0-59)				var sec = new Date().getSeconds();//获取当前秒数(0-59)				h.style.transform = 'rotate(' + (hours * 30 + min * 0.5 + sec * 0.5 / 60 )+ 'deg)';				m.style.transform = 'rotate(' + (min * 6 + sec * 0.1)+ 'deg)';				s.style.transform = 'rotate(' + sec * 6 + 'deg)';			}			var myTime = setInterval('clockFn()', 1000);
+		</script>
+	</body>
+</html>

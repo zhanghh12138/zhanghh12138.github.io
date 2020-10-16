@@ -41,13 +41,13 @@
 		    </dl>
 		  </li>
 		</ul>
-		<ul class="phub" v-cloak>
+		<ul class="phub">
 			<li class="w">
 				<div class="ad">
 					<span class="Zhh">广告位</span><span class="hub">招租</span>
 				</div>
 			</li>
-			<li class="q" v-for="item in sr">
+			<li class="q" v-for="item in sr" v-cloak>
 				<a :href="'zip/' + item">{{item}}</a>
 			</li>
 		</ul>
@@ -55,7 +55,6 @@
 		<div class="footer">本站资源均来自互联网</div>
 		<script src="js/jquery-3.5.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
-		<!-- <script src="layer/layer.js" type="text/javascript" charset="utf-8"></script> -->
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script src="zip/zip.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
