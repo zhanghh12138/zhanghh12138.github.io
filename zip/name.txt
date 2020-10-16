@@ -1,4 +1,2 @@
-IDM 6.37.zip
-name.txt
 小鸟伏特加.7z
 clockDome.html
