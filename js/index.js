@@ -1,11 +1,16 @@
-var q;
-a()
-const app = new Vue({
-	el:'.phub',
-	data:{
-		sr:q,
-	},
-})
+//获取文件夹中的文件名
+function gameName() {
+	gameObj = $.ajax({url:"./game/name.txt",async:false}).responseText.split("\n").filter(s => $.trim(s).length > 0)
+}
+gameName()
+function domeName() {
+	domeObj = $.ajax({url:"./dome/name.txt",async:false}).responseText.split("\n").filter(s => $.trim(s).length > 0)
+}
+domeName()
+function zipName() {
+	zipObj = $.ajax({url:"./zip/name.txt",async:false}).responseText.split("\n").filter(s => $.trim(s).length > 0)
+}
+zipName()
 
 layui.use('element', function(){
   var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
@@ -16,15 +21,45 @@ layui.use('element', function(){
     layer.msg(elem.text());
   });
 });
-
 const w = new Vue({
-	el:'.layui-nav',
+	el:'.abody',
 	data:{
-		tab:['全部','实用工具','开发软件','图片处理','单机游戏','影音资源','其它','关于我们']
+		zipName:zipObj,
+		domeName:domeObj,
+		gameName:gameObj,
+		tab:['全部','样例','游戏','压缩包']
+	},
+	methods:{
+		nam(e) {
+			console.log(e)
+			if(e == "全部") {
+				domeName()
+				gameName()
+				zipName()
+				this.domeName = domeObj
+				this.gameName = gameObj
+				this.zipName = zipObj
+			} else if(e == "样例") {
+				domeName()
+				this.domeName = domeObj
+				this.gameName = []
+				this.zipName = []
+			} else if(e == "游戏") {
+				gameName()
+				this.domeName = []
+				this.gameName = gameObj
+				this.zipName = []
+			} else if(e == "压缩包") {
+				zipName()
+				this.domeName = []
+				this.gameName = []
+				this.zipName = zipObj
+			}
+		}
 	}
 })
-
-function e() {
+//未开放模块弹窗
+function pop() {
 	layui.use('layer', function(){
 	  var layer = layui.layer;
 	  layer.alert('此功能正在开发中')

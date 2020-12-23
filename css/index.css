@@ -1,11 +1,9 @@
 .q {
-	/* background-image: linear-gradient(125deg,#2c3e50,#27ae60,#2980b9,#e74c3c,#8e44ad);
-	background-size: 400%;
-	animation: bganimation 15s infinite; */
 	display: inline-block;
 	vertical-align: top;
 	width: 100%;
 	text-align: center;
+	cursor:pointer;
 }
 .q a {
 	position: relative;
@@ -147,9 +145,12 @@ body {
 	border-top: 1px solid #242424;
 	padding: 0;
 }
+.layui-nav:hover {
+	cursor:pointer;
+}
 .layui-nav .layui-nav-item {
 	line-height: 40px;
-	width: 12.5%;
+	width: 25%;
 	text-align: center;
 }
 .layui-nav .layui-this:after ,.layui-nav-bar{

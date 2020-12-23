@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no"/>
+		<title></title>
+		<style type="text/css">
+			#wrap {
+				width: 300px;
+				height: 430px;
+				border: 1px solid transparent;
+				border-radius: 20px;
+				box-shadow: 0 0 20px blue;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -215px;
+				margin-left: -150px;
+			}
+			#top {
+				margin: 30px;
+			}
+			#left {
+				float: left;
+			}
+			#right {
+				float: right;
+			}
+			#big {
+				font-size: 100px;
+				text-align: center;
+				margin: 30px;
+				margin-top: 70px;
+			}
+			#wrap p {
+				text-align: center;
+				margin: 30px;
+				font-size: 20px;
+			}
+			#x {
+				text-align: center;
+				margin: 10px;
+				font-size: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="top">
+				<div id="left">倒计时：5s</div>
+				<div id="right">得分：0</div>
+			</div>
+			<div id="big"></div>
+			<p>根据上面的字的颜色从下面选择正确的字，选择正确自动开始</p>
+			<div id="x">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		<script type="text/javascript">
+			/*
+			 页面初始化时，随机生成 大字小字，及它们的颜色
+			 点击小字时，找到大字和小字之间的关系
+			 关系正确，加分，在第一次大字小字匹配成功时，开启倒计时
+			 每次匹配成功，都要重新生成大字小字
+			 倒计时结束，不能再点击小字
+			 * */
+			//获取元素
+			var timewrap = document.getElementById('left');//倒计时容器
+			var scorewrap = document.getElementById('right');//分数容器
+			var bigText = document.getElementById('big');//大字
+			/*
+			 document.querySelectorAll(selector)
+			 找到一批符合的元素
+			 selector  css选择器
+			 返回值：一个节点列表，长的像数组，但是不能当数组去用，可以循环它，也可以根据index方式从中取值
+			 * */
+			var smallText = document.querySelectorAll('#x span');//小字
+			//声明数据源
+			var colorArr = ['pink','blue','yellow','green','red'];
+			var textArr = ['粉','蓝','黄','绿','红'];
+			var score = 0;
+			var timing = 5;
+			var flag = true;//开启计时器的开关（计时器只在第一次点击成功时开启，之后不能重复开启，不然会有叠加问题）
+			//生成随机数函数
+			function rn(min,max) {
+				var num = Math.round(Math.random()*(max - min) + min);
+				return num;
+			}
+			//生成随机的下标数组
+			function randomIndexArr() {
+				var arr = [];
+				while(arr.length < 5) {
+					var num = rn(0,4);
+					if(arr.indexOf(num) < 0) {
+						arr.push(num);
+					}
+				}
+				return arr;
+			}
+			//生成大字小字
+			function createData() {
+				//大字
+				var bigTextColorIndex = rn(0,4);
+				var bigTextIndex = rn(0,4);
+				//根据随机的下标取出颜色和字，设置给大字
+				bigText.style.color = colorArr[bigTextColorIndex]
+				bigText.innerHTML = textArr[bigTextIndex];
+				var arr = randomIndexArr();//颜色下标
+				var arr2 = randomIndexArr();//文字下标
+				for(var i = 0;i < arr.length;i++) {
+					/*
+					 i: 0   arr[i]:4  colorArr[arr[i]]: red  span1
+					 ...
+					 ...
+					 ...
+					 ...
+					 * */
+					smallText[i].style.color = colorArr[arr[i]];
+					smallText[i].innerHTML = textArr[arr2[i]];
+				}
+			}
+			createData();
+			//为所有的小字绑定点击事件
+			function eleClick() {
+				//循环小字的nodeList
+				for(var i = 0;i < smallText.length;i++) {
+					//为每一个小字绑定点击事件
+					smallText[i].onclick = function() {
+						clickOne(this);
+					}
+				}
+			}
+			eleClick();
+			
+			//点击一个小字
+			function clickOne(ele) {
+				//获取大字的颜色在colorArr中的位置
+				var bigColor = bigText.style.color;
+				var bigColorIndex = colorArr.indexOf(bigColor);
+				//获取当前点击的小字的位置
+				var smallText = ele.innerHTML;
+				var smallTextIndex = textArr.indexOf(smallText);
+				//判断是否相等
+				if(bigColorIndex == smallTextIndex) {
+					//重创大字小字
+					createData();
+					//加分
+					scorewrap.innerHTML = '得分：' + ++score;
+					if(flag) {
+					//第一次点击成功时，开启倒计时
+					var timer = setInterval(function() {
+						timewrap.innerHTML = '倒计时：' + --timing + 's';
+						//当时间减到0，停止
+						if(timing == -1) {
+							//清除计时器，不进行下次的代码调用，但是这一次的调用会执行结束
+							clearInterval(timer);
+							alert('游戏结束，您的分数是：' + score + '\n' + '点击确定重新开始游戏');
+							//分数清零
+							score = 0;
+							scorewrap.innerHTML = '得分：0';
+							//倒计时恢复
+							timing = 5;
+							timewrap.innerHTML = "倒计时：5s";
+							flag = true;
+						}
+					},1000)
+					flag = false;
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -7,53 +7,61 @@
 		<link rel="stylesheet" type="text/css" href="css/index.css"/>
 	</head>
 	<body>
-		<div class="header">
-			<a href="http://www.zhanghaohuan.tk">
-				<div class="logo">
-					<span class="Zhh">Zhh</span><span class="hub">hub</span>
+		<div class="abody">
+			<div class="header">
+				<a href="http://www.zhanghaohuan.tk">
+					<div class="logo">
+						<span class="Zhh">Zhh</span><span class="hub">hub</span>
+					</div>
+				</a>
+				<div class="search">
+					<input placeholder="搜索为数不多的资源.." class="searchInput"/>
+					<button class="searchBtn" onclick="pop()">
+						<i class="layui-icon layui-icon-search" style="font-size: 25px;font-weight: bold;"></i>
+					</button>
 				</div>
-			</a>
-			<div class="search">
-				<input placeholder="搜索为数不多的资源.." class="searchInput"/>
-				<button class="searchBtn" onclick="e()">
-					<i class="layui-icon layui-icon-search" style="font-size: 25px;font-weight: bold;"></i>
-				</button>
+				
+				<div class="headerButton">
+					<button class="added" onclick="pop()">上传</button>
+					<button class="vip" onclick="pop()">会员</button>
+				</div>
+				<div class="headerMenu">
+					<i class="layui-icon layui-icon-email" onclick="pop()"></i>
+					<i class="layui-icon layui-icon-group" onclick="pop()"></i>
+					<i class="layui-icon layui-icon-circle-dot" onclick="pop()"></i>
+				</div>
 			</div>
-			
-			<div class="headerButton">
-				<button class="added" onclick="e()">上传</button>
-				<button class="vip" onclick="e()">会员</button>
-			</div>
-			<div class="headerMenu">
-				<i class="layui-icon layui-icon-email" onclick="e()"></i>
-				<i class="layui-icon layui-icon-group" onclick="e()"></i>
-				<i class="layui-icon layui-icon-circle-dot" onclick="e()"></i>
-			</div>
+			<ul class="layui-nav" v-cloak>
+			  <li class="layui-nav-item" v-for="(item,index) in tab" :class="{'layui-this':(index == 0)}" :key="item">
+			    <a @click="nam(item)">{{item}}</a>
+			    <!-- <dl class="layui-nav-child">
+			      <dd><a href="">正在开发此版块中</a></dd>
+			    </dl> -->
+			  </li>
+			</ul>
+			<ul class="phub">
+				<li class="w">
+					<div class="ad">
+						<span class="Zhh">广告位</span><span class="hub">招租</span>
+					</div>
+				</li>
+				<li class="q" v-for="item in domeName" v-cloak>
+					<a :href="'dome/' + item+ '/index.html'">{{item}}</a>
+				</li>
+				<li class="q" v-for="item in gameName" v-cloak>
+					<a :href="'game/' + item+ '/index.html'">{{item}}</a>
+				</li>
+				<li class="q" v-for="item in zipName" v-cloak>
+					<a :href="'zip/' + item + '/index.7z'">{{item}}</a>
+				</li>
+			</ul>
 		</div>
-		<ul class="layui-nav" v-cloak>
-		  <li class="layui-nav-item" v-for="(item,index) in tab" :class="{'layui-this':(index == 0)}">
-		    <a href="javascript:;">{{item}}</a>
-		    <dl class="layui-nav-child">
-		      <dd><a href="">正在开发此版块中</a></dd>
-		    </dl>
-		  </li>
-		</ul>
-		<ul class="phub">
-			<li class="w">
-				<div class="ad">
-					<span class="Zhh">广告位</span><span class="hub">招租</span>
-				</div>
-			</li>
-			<li class="q" v-for="item in sr" v-cloak>
-				<a :href="'zip/' + item">{{item}}</a>
-			</li>
-		</ul>
+		
 		<div style="height: 40px;"></div>
-		<div class="footer">本站资源均来自互联网</div>
+		<div class="footer">本站资源均来自本人，请勿做商用，不要下载小鸟伏特加</div>
 		<script src="js/jquery-3.5.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
-		<script src="zip/zip.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>
