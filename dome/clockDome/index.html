@@ -2,7 +2,10 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title></title>
+		<link rel="stylesheet" href="../../layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="../../css/index.css"/>
 		<style type="text/css">
 			* {
 				margin: 0;
@@ -15,6 +18,13 @@
 				border-radius: 50%;
 				position: relative;
 				overflow: hidden;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -270px;
+				margin-left: -270px;
+				background: #eee;
+				opacity: 0.9;
 			}
 			.s {
 				height: 300px;
@@ -59,36 +69,99 @@
 			.bottom {
 				bottom: 0;
 			}
+			@media screen and (max-width:615px) {
+				.clock {
+					width: 350px;
+					height: 350px;
+					margin-top: -175px;
+					margin-left: -175px;
+				}
+				.s {
+					height: 195px;
+					width: 3px;
+					top: 13px;
+				}
+				.m {
+					height: 175.5px;
+					width: 6.5px;
+					top: 45.5px;
+				}
+				.h {
+					height: 130px;
+					width: 13px;
+					top: 78px;
+				}
+				.box {
+					width: 32.5px;
+					height: 350px;
+					left: 160px;
+				}
+				.box div {
+					width: 32.5px;
+					height: 32.5px;
+					font-size: 26px;
+				}
+			}
 		</style>
 	</head>
 	<body>
+		<div class="header">
+			<a href="http://www.zhanghaohuan.tk">
+				<div class="logo">
+					<span class="Zhh">Zhh</span><span class="hub">hub</span>
+				</div>
+			</a>
+			<div class="search">
+				<input placeholder="搜索为数不多的资源.." class="searchInput"/>
+				<button class="searchBtn" onclick="pop()">
+					<i class="layui-icon layui-icon-search" style="font-size: 25px;font-weight: bold;"></i>
+				</button>
+			</div>
+			
+			<div class="headerButton">
+				<button class="added" onclick="pop()">上传</button>
+				<button class="vip" onclick="pop()">会员</button>
+			</div>
+			<div class="headerMenu">
+				<i class="layui-icon layui-icon-email" onclick="pop()"></i>
+				<i class="layui-icon layui-icon-group" onclick="pop()"></i>
+				<i class="layui-icon layui-icon-circle-dot" onclick="pop()"></i>
+			</div>
+		</div>
 		<div class="clock">
 			<div class="s"></div>
 			<div class="m"></div>
 			<div class="h"></div>
 		</div>
+		<script src="../../layui/layui.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			var clock = document.querySelector('.clock');
-			var h = document.querySelector('.h');
-			var m = document.querySelector('.m');
-			var s = document.querySelector('.s');
-			for(var i = 1;i < 7;i++) {
-				var clockBox = document.createElement('div')
+			function pop() {
+				layui.use('layer', function(){
+				  let layer = layui.layer;
+				  layer.alert('此功能正在开发中')
+				});
+			}
+			let clock = document.querySelector('.clock');
+			let h = document.querySelector('.h');
+			let m = document.querySelector('.m');
+			let s = document.querySelector('.s');
+			for(let i = 1;i < 7;i++) {
+				let clockBox = document.createElement('div')
 				clockBox.className = 'box';
 				clock.appendChild(clockBox);
 				clockBox.style.transform = 'rotate(' + i * 30 + 'deg)';
-				var topBox = document.createElement('div')
+				let topBox = document.createElement('div')
 				topBox.className = 'top';
 				topBox.innerHTML = i;
 				clockBox.appendChild(topBox);
-				var bottomBox = document.createElement('div')
+				let bottomBox = document.createElement('div')
 				bottomBox.className = 'bottom';
 				bottomBox.innerHTML = i + 6;
 				clockBox.appendChild(bottomBox);
 				topBox.style.transform = 'rotate(' + -i * 30 + 'deg)';
 				bottomBox.style.transform = 'rotate(' + -i * 30 + 'deg)';
 			}
-			function clockFn() {				var hours = new Date().getHours(); //获取当前小时数(0-23)				var min = new Date().getMinutes();//获取当前分钟数(0-59)				var sec = new Date().getSeconds();//获取当前秒数(0-59)				h.style.transform = 'rotate(' + (hours * 30 + min * 0.5 + sec * 0.5 / 60 )+ 'deg)';				m.style.transform = 'rotate(' + (min * 6 + sec * 0.1)+ 'deg)';				s.style.transform = 'rotate(' + sec * 6 + 'deg)';			}			var myTime = setInterval('clockFn()', 1000);
+			function clockFn() {				let hours = new Date().getHours(); //获取当前小时数(0-23)				let min = new Date().getMinutes();//获取当前分钟数(0-59)				let sec = new Date().getSeconds();//获取当前秒数(0-59)				h.style.transform = 'rotate(' + (hours * 30 + min * 0.5 + sec * 0.5 / 60 )+ 'deg)';				m.style.transform = 'rotate(' + (min * 6 + sec * 0.1)+ 'deg)';				s.style.transform = 'rotate(' + sec * 6 + 'deg)';			}			let myTime = setInterval('clockFn()', 1000);
 		</script>
 	</body>
 </html>

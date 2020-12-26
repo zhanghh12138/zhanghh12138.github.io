@@ -221,3 +221,30 @@ body {
 	border-radius: 10px !important;
 	overflow: hidden;
 }
+@media screen and (max-width:800px) {
+	.search,.headerButton {
+		display: none;
+	}
+	.header {
+	    justify-content: space-between;
+	}
+	.logo {
+		margin-left: 30px;
+	}
+	.headerMenu {
+	    margin-right: 30px;
+	}
+}
+@media screen and (max-width:615px) {
+	.w {
+		display: none;
+	}
+	.phub {
+	    grid-template-columns: repeat(3,1fr);
+	}
+}
+@media screen and (max-width:450px) {
+	.phub {
+	    grid-template-columns: repeat(2,1fr);
+	}
+}
