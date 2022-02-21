@@ -65,3 +65,21 @@ function pop() {
 	  layer.alert('此功能正在开发中')
 	});
 } 
+
+// // ajax请求
+// $("#ajaxBtn").click(function(){
+// 	$.ajax({
+// 		url:"http://localhost:8080/json/ajaxServlet",
+// 		//调用servlet方法
+// 		// data:"action=jQueryAjax",			
+// 		data:{action:"jQueryAjax"},
+// 		type:"GET",
+// 		success:function (data) {
+// 			// alert("服务器返回的数据是：" + data);
+// 			// var jsonObj = JSON.parse(data);
+// 			$("#msg").html(" ajax 编号：" + data.id + " , 姓名：" + data.name);
+// 		},
+// 		//返回数据的格式
+// 		dataType : "json"
+// 	});
+// });
