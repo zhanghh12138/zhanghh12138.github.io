@@ -66,6 +66,8 @@ function pop() {
 	});
 } 
 
+
+//git测试
 // // ajax请求
 // $("#ajaxBtn").click(function(){
 // 	$.ajax({
