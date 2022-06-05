@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>zhh</title>
 		<link rel="stylesheet" href="layui/css/layui.css">
-		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
 	</head>
 	<body>
 		<div class="abody">
@@ -16,12 +16,12 @@
 					</div>
 				</a>
 				<div class="search">
-					<input placeholder="搜索为数不多的资源.." class="searchInput"/>
+					<input placeholder="搜索为数不多的资源.." class="searchInput" />
 					<button class="searchBtn" onclick="pop()">
 						<i class="layui-icon layui-icon-search" style="font-size: 25px;font-weight: bold;"></i>
 					</button>
 				</div>
-				
+
 				<div class="headerButton">
 					<button class="added" onclick="pop()">上传</button>
 					<button class="vip" onclick="pop()">会员</button>
@@ -33,12 +33,12 @@
 				</div>
 			</div>
 			<ul class="layui-nav" v-cloak>
-			  <li class="layui-nav-item" v-for="(item,index) in tab" :class="{'layui-this':(index == 0)}" :key="item">
-			    <a @click="nam(item)">{{item}}</a>
-			    <!-- <dl class="layui-nav-child">
+				<li class="layui-nav-item" v-for="(item,index) in tab" :class="{'layui-this':(index == 0)}" :key="item">
+					<a @click="nam(item)">{{item}}</a>
+					<!-- <dl class="layui-nav-child">
 			      <dd><a href="">正在开发此版块中</a></dd>
 			    </dl> -->
-			  </li>
+				</li>
 			</ul>
 			<ul class="phub">
 				<li class="w">
@@ -57,12 +57,35 @@
 				</li>
 			</ul>
 		</div>
-		
+
 		<div style="height: 40px;"></div>
 		<div class="footer">本站资源均来自本人，请勿做商用，不要下载小鸟伏特加</div>
 		<script src="js/jquery-3.5.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var x = 123321
+
+			var i = 0
+			var y = x
+			var z = 1
+			while (y > 1) {
+				y = y / 10
+				i++
+			}
+			y = i-1
+			i = parseInt(i/2)
+			console.log(i,y)
+			while (i > 0) {
+				// if(parseInt(x / Math.pow(10, y)) == parseInt(x % Math.pow(10, z)/Math.pow(10,z-1))) {
+					console.log(parseInt(x / Math.pow(10, y)));
+				// }
+				i--
+				z++
+				y--
+			}
+			console.log(321)
+		</script>
 	</body>
 </html>
